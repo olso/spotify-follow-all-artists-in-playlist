@@ -47,10 +47,30 @@ async function getArtistsIds(api, userId, playlistId) {
     ]
 }
 
+async function followArtists(api, artistsIds) {
+    let totalFollowed = 0
+
+    for (const artistId of artistsIds) {
+        try {
+            // Chunking ids didn't work acutally, that's why 1by1
+            await api.followArtists([artistId])
+            console.log('Now following', artistId)
+            totalFollowed += 1
+        } catch (error) {
+            console.error('Failed to follow', artistId)
+            console.error(error)
+        }
+    }
+
+    console.log('Followed', totalFollowed, 'out of', artistsIds.length, 'artists')
+}
+
 async function main() {
     const { accessToken, userId, playlistId } = argv
     const api = new SpotifyWebApi({ accessToken })
     const artistsIds = await getArtistsIds(api, userId, playlistId)
+    console.log('Got', artistsIds.length, 'artists!')
+    await followArtists(api, artistsIds)
 }
 
 main()
