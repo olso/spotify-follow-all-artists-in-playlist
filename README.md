@@ -3,7 +3,7 @@
 ## So the story behind this
 
 1. I had one big playlist with 1500+ songs
-2. My Release Radar is shit
+2. My Release Radar was shit
 3. This scripts will follow all the artists in that playlist
 4. Your Release Radar will be pimped again
 
